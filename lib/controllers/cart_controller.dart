@@ -6,6 +6,10 @@ class CartController extends GetxController {
   var cartItems = <Product>[].obs;
   var favoriteItems = <Product>[].obs;
 
+  int get favoriteCount => favoriteItems.length;
+
+  double get totalPrice => cartItems.fold(0, (sum, item) => sum + item.price);
+
   void addToCart(Product product) {
     cartItems.add(product);
   }
@@ -23,11 +27,5 @@ class CartController extends GetxController {
     favoriteItems.remove(product);
   }
 
-  double getTotalPrice() {
-    double total = 0;
-    for (var element in cartItems) {
-      total += element.price;
-    }
-    return total;
-  }
+
 }

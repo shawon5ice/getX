@@ -68,35 +68,36 @@ class ShoppingPage extends StatelessWidget {
           ),
           GetX<CartController>(
               builder: (controller) {
-              return Text('Total Amount: ${controller.getTotalPrice()}');
-            }
+              return Text('Total Amount: ${controller.totalPrice}');
+              }
           ),
           const SizedBox(
             height: 200,
           ),
-
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        clipBehavior: Clip.none,
         onPressed: () {
           Get.toNamed('/cart');
         },
         child: SizedBox(
-          height: 50,
-          width: 50,
+          height: 100,
+          width: 100,
           child: Stack(
             children: [
               const Align(
                 alignment: Alignment.center,
                   child:Icon(Icons.favorite_border)),
-              Align(
-                alignment: Alignment.topRight,
+              Positioned(
+                top: -10,
+                right: 0,
                 child: GetX<CartController>(
                   builder: (controller) {
                     return CircleAvatar(
                       backgroundColor: Colors.yellow,
-                      radius: 10,
-                      child: Text(controller.favoriteItems.length.toString(),style: const TextStyle(color: Colors.black),),
+                      radius: 15,
+                      child: Text(controller.favoriteCount.toString(),style: const TextStyle(color: Colors.black),),
                     );
                   }
                 ),
